@@ -24,8 +24,9 @@
 /**********************************************************\
  *    Includes 
 \**********************************************************/
-#include "graph.h" /* matrix graphs */
 #include <iostream>
+#include <random>  /* added c++ 11, */
+#include "graph.h" /* matrix graphs */
 /**********************************************************\
  *    Macros  
 \**********************************************************/
@@ -44,10 +45,8 @@ void printVector(const std::vector<T>& vec) {
     std::cout << std::endl;
 }
 
-int main(int argc, char const *argv[])
+void test0()
 {
-    UNUSED(argc);
-    UNUSED(argv);
     dsi::GraphMatrix<int> intGraph;
     //checking if compiler makes copy constructor
     dsi::GraphMatrix<int> graph2 = intGraph; 
@@ -55,6 +54,42 @@ int main(int argc, char const *argv[])
     std::vector<int> first = graph2.getEdges(1); 
     std::cout << graph2 << std::endl;
     printVector(first);
+}
 
+//tests matrix with some random number generation. not a horribly useful graph...
+void test1()
+{
+    int size = 8;
+    int upperbound = 4;
+    //I seed a complex random number generator with 0 for consistency.. *sigh*
+    std::mt19937 gen(0);
+    //a tool for uniform random numbers in a range...
+    std::uniform_int_distribution<> distrib(0, upperbound);
+
+    dsi::GraphMatrix<int> intGraph =  dsi::GraphMatrix<int>(size);
+    for(int i = 0; i < size; ++i)
+    {
+        for(int j = 0; j < size; ++j)
+        {
+            //a cheep way to make a lot of things 0
+            if(distrib(gen) > upperbound / 2)
+                intGraph.addEdge(i, j, distrib(gen));
+        }
+    }
+    std::cout << intGraph << std::endl;
+}
+
+int main(int argc, char const *argv[])
+{
+    UNUSED(argc);
+    UNUSED(argv);
+    int size = 8;
+
+    test1();
+
+    dsi::GraphMatrix<int> intGraph =  dsi::GraphMatrix<int>(size);
+    //intGraph.addEdge(0, 1, 8);
+
+    std::cout << intGraph << std::endl;
     return 0;
 }

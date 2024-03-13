@@ -53,9 +53,9 @@ namespace DominicsSelfImplement
             // create matrix from two vectors?
 
             // add vertex, 
-            GraphMatrix addVertex(T data, std::vector<int> edges);
+            GraphMatrix& addVertex(T data, std::vector<int> edges);
             // add edge
-            GraphMatrix addEdge(size_t index, size_t edge, int weight = 1);
+            GraphMatrix& addEdge(size_t index, size_t edge, int weight = 1);
 
             //print overloads, I dont remember how to do this in cpps for templates...
             friend std::ostream& operator<<(std::ostream& os, const GraphMatrix<T>& graph) 
@@ -82,7 +82,7 @@ namespace DominicsSelfImplement
             //a 2 array of data holds the weight of edges, where 0 is not an edge
             std::vector<std::vector<int> > _matrix;
             std::vector<std::pair<int, T> > _vertices ;
-            //int _size; //I dont think I need this anymore.  
+            
 
 
     };

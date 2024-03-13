@@ -69,15 +69,16 @@ namespace DominicsSelfImplement
     // create matrix from two vectors?
     // add vertex, 
     template<class T>
-    GraphMatrix<T> GraphMatrix<T>::addVertex(T data, std::vector<int> edges)
+    GraphMatrix<T>& GraphMatrix<T>::addVertex(T data, std::vector<int> edges)
     {
-        
+
     }
     // add edge
     template<class T>
-    GraphMatrix<T> GraphMatrix<T>::addEdge(size_t index, size_t edge, int weight)
+    GraphMatrix<T>& GraphMatrix<T>::addEdge(size_t index, size_t edge, int weight)
     {
-
+        _matrix[index][edge] = weight;
+        return *this;
     }
 
 }

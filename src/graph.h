@@ -31,6 +31,7 @@
 \**********************************************************/
 #include <utility> /* std::pair */
 #include <vector>  /* needed for GraphList */
+#include <iostream>
 
 /* my hopefully obnoxiously long enough namespace */
 namespace DominicsSelfImplement 
@@ -42,24 +43,46 @@ namespace DominicsSelfImplement
         public:
             /* constructors (destructores)*/
             GraphMatrix();
+            GraphMatrix(std::vector<std::vector<int> > matrix, std::vector<std::pair<int, T> > vertices);
+            GraphMatrix(size_t size);
             ~GraphMatrix();
             
-            std::vector<T> getEdges(int index);
-            std::pair<int, T> getVert(int index);
+            std::vector<T> getEdges(size_t index);
+            std::pair<int, T> getVert(size_t index);
 
             // create matrix from two vectors?
 
             // add vertex, 
             GraphMatrix addVertex(T data, std::vector<int> edges);
             // add edge
-            GraphMatrix addEdge(int index, int edge, int weight = 1);
+            GraphMatrix addEdge(size_t index, size_t edge, int weight = 1);
 
-
+            //print overloads, I dont remember how to do this in cpps for templates...
+            friend std::ostream& operator<<(std::ostream& os, const GraphMatrix<T>& graph) 
+            {
+                os << "Adjacency Matrix:" << std::endl;
+                for (size_t i = 0; i < graph._matrix.size(); ++i) 
+                {
+                    for (size_t j = 0; j < graph._matrix[i].size(); ++j) 
+                    {
+                        os << graph._matrix[i][j] << " ";
+                    }
+                    os << std::endl;
+                }
+        
+                os << "Vertices:" << std::endl;
+                for (size_t k = 0; k < graph._vertices.size(); ++k) 
+                {
+                    os << "(" << graph._vertices[k].first << ", " << graph._vertices[k].second << ")" << std::endl;
+                } 
+                    return os;
+            };
+        
         private:
             //a 2 array of data holds the weight of edges, where 0 is not an edge
             std::vector<std::vector<int> > _matrix;
-            std::vector<std::pair<int, T> > _vertex;
-            int _size;
+            std::vector<std::pair<int, T> > _vertices ;
+            //int _size; //I dont think I need this anymore.  
 
 
     };

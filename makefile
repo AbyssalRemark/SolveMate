@@ -78,7 +78,7 @@ $(DIR)$(EXE) : $(OBJ) $(SELF)
 	-$(MAKE) #tablen #tablen isnt relivent anymore
 
 # compiles a .o file for the "main" file.
-$(DIR)$(EXE).o : $(SRC)$(EXE).cpp $(SELF)
+$(DIR)$(EXE).o : $(SRC)$(EXE).cpp $(SELF) $(SRC)graph.cpp $(SRC)graph.h 
 	$(CC) $(CFLAGS) -c $(SRC)$(EXE).cpp  -o $(DIR)$(EXE).o
 
 #...	                                                                    edit

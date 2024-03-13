@@ -24,7 +24,8 @@
 /**********************************************************\
  *    Includes 
 \**********************************************************/
-#include "graph.h"
+#include "graph.h" /* matrix graphs */
+#include <iostream>
 /**********************************************************\
  *    Macros  
 \**********************************************************/
@@ -34,10 +35,26 @@
 //Namespace Shortenner because alias is gross.
 namespace dsi = DominicsSelfImplement; 
 
+template <typename T>
+void printVector(const std::vector<T>& vec) {
+    std::cout << "vector:" << std::endl;
+    for (typename std::vector<T>::const_iterator it = vec.begin(); it != vec.end(); ++it) {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+
 int main(int argc, char const *argv[])
 {
     UNUSED(argc);
     UNUSED(argv);
     dsi::GraphMatrix<int> intGraph;
+    //checking if compiler makes copy constructor
+    dsi::GraphMatrix<int> graph2 = intGraph; 
+    //returns empty vector if not in existance
+    std::vector<int> first = graph2.getEdges(1); 
+    std::cout << graph2 << std::endl;
+    printVector(first);
+
     return 0;
 }

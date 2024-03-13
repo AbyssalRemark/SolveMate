@@ -60,7 +60,7 @@ namespace DominicsSelfImplement
             //print overloads, I dont remember how to do this in cpps for templates...
             friend std::ostream& operator<<(std::ostream& os, const GraphMatrix<T>& graph) 
             {
-                os << "Adjacency Matrix:" << std::endl;
+                //os << "Adjacency Matrix:" << std::endl;
                 for (size_t i = 0; i < graph._matrix.size(); ++i) 
                 {
                     for (size_t j = 0; j < graph._matrix[i].size(); ++j) 
@@ -70,11 +70,11 @@ namespace DominicsSelfImplement
                     os << std::endl;
                 }
         
-                os << "Vertices:" << std::endl;
-                for (size_t k = 0; k < graph._vertices.size(); ++k) 
-                {
-                    os << "(" << graph._vertices[k].first << ", " << graph._vertices[k].second << ")" << std::endl;
-                } 
+                //os << "Vertices:" << std::endl;
+                //for (size_t k = 0; k < graph._vertices.size(); ++k) 
+                //{
+                //    os << "(" << graph._vertices[k].first << ", " << graph._vertices[k].second << ")" << std::endl;
+                //} 
                     return os;
             };
         

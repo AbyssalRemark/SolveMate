@@ -89,7 +89,7 @@ int main(int argc, char const *argv[])
 
     dsi::GraphMatrix<int> intGraph =  dsi::GraphMatrix<int>(size);
     //intGraph.addEdge(0, 1, 8);
+    //std::cout << intGraph << std::endl;
 
-    std::cout << intGraph << std::endl;
     return 0;
 }

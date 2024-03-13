@@ -13,13 +13,15 @@
 #name of exe                                                                edit
 EXE = SolveMate
 #Compiler name (default should be gcc)
-CC =gcc
+CC =g++
 #src code base directory
 SRC =./src/
 #directory to compile to. if needed to be changed.
 DIR = ./$(CC)/
 #object files. (files between compile and link)	                            edit
-OBJ =$(DIR)$(EXE).o
+OBJ =$(DIR)$(EXE).o 
+
+#NOTE TO SELF, templated impl cant be compiled ahead of time. (duh.. )
 
 ############################################################################
 # Overide flags
@@ -27,7 +29,7 @@ OBJ =$(DIR)$(EXE).o
 #   allows for adding flags instead of overwriting them.
 
 #compiler flags,
-override CFLAGS+= -g -O -Wall -Wextra -ansi -pedantic -pthread
+override CFLAGS+= -g -O -Wall -Wextra -ansi -pedantic -pthread -std=c++17
 #Linker flags,
 override LFLAGS+= -lpthread
 
@@ -72,18 +74,18 @@ endif
 
 # links the program, Default recipy.
 $(DIR)$(EXE) : $(OBJ) $(SELF)
-	$(CC) $(SRC)$(OBJ) -o $(DIR)$(EXE) $(LFLAGS)
+	$(CC) $(OBJ) -o $(DIR)$(EXE) $(LFLAGS)
 	-$(MAKE) #tablen #tablen isnt relivent anymore
 
 # compiles a .o file for the "main" file.
-$(DIR)$(EXE).o : $(SRC)$(EXE).c $(SELF)
-	$(CC) $(CFLAGS) -c $(EXE).c  -o $(DIR)$(EXE).o
+$(DIR)$(EXE).o : $(SRC)$(EXE).cpp $(SELF)
+	$(CC) $(CFLAGS) -c $(SRC)$(EXE).cpp  -o $(DIR)$(EXE).o
 
 #...	                                                                    edit
 
-# compiles a .o for graph.c                                                 edit
-$(DIR)graph.o : $(SRC)graph.c $(SRC)graph.h $(SELF)
-	$(CC) $(CFLAGS) -c $(SRC)graph.c -o $(DIR)graph.o
+# compiles a .o for graph.cpp                                               edit
+#$(DIR)graph.o : $(SRC)graph.cpp $(SRC)graph.h $(SELF)
+#	$(CC) $(CFLAGS) -c $(SRC)graph.cpp -o $(DIR)graph.o
 
 # compiles a .o file for any template                                       edit
 #$(DIR)TEMPLATE.o : $(SRC)TEMPLATE.c $(SRC)TEMPLATE.h $(SELF)

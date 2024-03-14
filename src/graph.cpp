@@ -95,24 +95,52 @@ namespace DominicsSelfImplement
     /*==/\/\/\/\/\/\/\/\++++/\/\/\/\/\/\/\/\==*\
      *  TODO: Once templetized weight needs to be somehow determined from data..
     \*==\/\/\/\/\/\/\/\/++++\/\/\/\/\/\/\/\/==*/
-    
+
     template<class T>
-    std::vector<int> GraphMatrix<T>::dijkstras(size_t from, size_t to)
+    std::vector<int> GraphMatrix<T>::dijkstras(size_t from)
     {   
         //INT_MAX was so much easier to read...
-        std::vector<int> nodes = std::vector<int>(_matrix.size(), std::numeric_limits<int>::max());
-        //std::priority_queue something idk...
+        std::vector<int> dist = std::vector<int>(_matrix.size(), std::numeric_limits<int>::max());
+        std::vector<bool> seen = std::vector<bool>(_matrix.size(), false);
         //set start to 0.
-        nodes[from] = 0;
-        //Our variable for indexing. 
-        int current = from;
-
-        while(true)
+        dist[from] = 0;
+        for(size_t i = 0; i < _matrix.size(); ++i)
         {
+            int minValue = std::numeric_limits<int>::max();
+            int min; //Can go above I guess...
 
+            //find minimum for current 
+            for(size_t j = 0; j < _matrix.size(); ++j)
+            {
+                if(seen[j] == false && dist[j] <= minValue)
+                {
+                    min = j;
+                    minValue = dist[j];
+                }
+            }
+            //minIndex has sufficently been seen.
+            seen[min] = true;
+
+            for(size_t j = 0; j < _matrix.size(); ++j)
+            {
+                if(!seen[j]
+                   && _matrix[min][j] //if edge does exist.. THIS MIGHT BE i
+                   && dist[min] != std::numeric_limits<int>::max()
+                   && dist[min] + _matrix[min][j] < dist[j])
+                {
+                    dist[j] = dist[min] + _matrix[min][j];
+                }
+            }
         }
+        return dist;
 
     }
 
 }
+
+/*********************************************************************\
+ *
+ *         Helper functions
+ *
+\*********************************************************************/
 

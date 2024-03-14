@@ -57,7 +57,7 @@ namespace DominicsSelfImplement
             GraphMatrix& addEdge(size_t index, size_t edge, int weight = 1);
             GraphMatrix& addSymEdge(size_t index, size_t edge, int weight = 1);
 
-            std::vector<int> dijkstras(size_t from, size_t to);
+            std::vector<int> dijkstras(size_t from);
 
             //print overloads, I dont remember how to do this in cpps for templates...
             friend std::ostream& operator<<(std::ostream& os, const GraphMatrix<T>& graph) 

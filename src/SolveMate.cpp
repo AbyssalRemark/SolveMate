@@ -81,18 +81,35 @@ void test1()
 
 void test2()
 {
-    
+    dsi::GraphMatrix<int> intGraph = dsi::GraphMatrix<int>(6);
+    std::vector<int> res;
+
+    intGraph.addSymEdge(0,1,10);
+    intGraph.addSymEdge(0,2,20);
+    intGraph.addSymEdge(1,3,50);
+    intGraph.addSymEdge(1,4,10);
+    intGraph.addSymEdge(2,3,33);
+    intGraph.addSymEdge(3,4,20);
+    intGraph.addSymEdge(3,5,2);
+    intGraph.addSymEdge(4,5,1);
+    std::cout << intGraph << std::endl;
+
+    //printVector<int>(intGraph.dijkstras(0));
+    res = intGraph.dijkstras(0);
+    printVector(res);
+
 }
 
 int main(int argc, char const *argv[])
 {
     UNUSED(argc);
     UNUSED(argv);
-    int size = 8;
+    //int size = 8;
+    //test1();
+    //dsi::GraphMatrix<int> intGraph =  dsi::GraphMatrix<int>(size);
 
-    test1();
+    test2();
 
-    dsi::GraphMatrix<int> intGraph =  dsi::GraphMatrix<int>(size);
     //intGraph.addEdge(0, 1, 8);
     //std::cout << intGraph << std::endl;
 

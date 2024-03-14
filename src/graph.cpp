@@ -23,6 +23,8 @@
 \******************************************************************************/
 #include <vector>  /* needed for GraphList */
 #include <utility> /* std::pair */
+#include <queue>   /* priority queues for simplicity..*/
+#include <limits>
 //#include <new>
 namespace DominicsSelfImplement
 {   
@@ -57,6 +59,7 @@ namespace DominicsSelfImplement
         if(_matrix.size() >= index)
             return _matrix[index];
         return std::vector<T>();
+        //not even sure of thats right yet..
     }
 
     template<class T>
@@ -71,7 +74,7 @@ namespace DominicsSelfImplement
     template<class T>
     GraphMatrix<T>& GraphMatrix<T>::addVertex(T data, std::vector<int> edges)
     {
-
+        //man I dont even want to deal with that yet...
     }
     // add edge
     template<class T>
@@ -79,6 +82,36 @@ namespace DominicsSelfImplement
     {
         _matrix[index][edge] = weight;
         return *this;
+    }
+
+    template<class T>
+    GraphMatrix<T>& GraphMatrix<T>::addSymEdge(size_t index, size_t edge, int weight)
+    {
+        _matrix[index][edge] = weight;
+        _matrix[edge][index] = weight;
+        return *this;
+    }
+
+    /*==/\/\/\/\/\/\/\/\++++/\/\/\/\/\/\/\/\==*\
+     *  TODO: Once templetized weight needs to be somehow determined from data..
+    \*==\/\/\/\/\/\/\/\/++++\/\/\/\/\/\/\/\/==*/
+    
+    template<class T>
+    std::vector<int> GraphMatrix<T>::dijkstras(size_t from, size_t to)
+    {   
+        //INT_MAX was so much easier to read...
+        std::vector<int> nodes = std::vector<int>(_matrix.size(), std::numeric_limits<int>::max());
+        //std::priority_queue something idk...
+        //set start to 0.
+        nodes[from] = 0;
+        //Our variable for indexing. 
+        int current = from;
+
+        while(true)
+        {
+
+        }
+
     }
 
 }

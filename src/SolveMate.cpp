@@ -24,9 +24,9 @@
 /**********************************************************\
  *    Includes 
 \**********************************************************/
-#include <iostream>
-#include <random>  /* added c++ 11, */
-#include "graph.h" /* matrix graphs */
+#include <iostream> /* cout and other printing things */
+#include <random>   /* random gen stuff.              */
+#include "graph.h"  /* matrix graphs.                 */
 /**********************************************************\
  *    Macros  
 \**********************************************************/
@@ -60,7 +60,7 @@ void test0()
 void test1()
 {
     int size = 8;
-    int upperbound = 4;
+    int upperbound = 10;
     //I seed a complex random number generator with 0 for consistency.. *sigh*
     std::mt19937 gen(0);
     //a tool for uniform random numbers in a range...
@@ -77,6 +77,11 @@ void test1()
         }
     }
     std::cout << intGraph << std::endl;
+}
+
+void test2()
+{
+    
 }
 
 int main(int argc, char const *argv[])

@@ -46,16 +46,18 @@ namespace DominicsSelfImplement
             GraphMatrix(std::vector<std::vector<int> > matrix, std::vector<std::pair<int, T> > vertices);
             GraphMatrix(size_t size);
             ~GraphMatrix();
+            // create matrix from two vectors?
             
             std::vector<T> getEdges(size_t index);
             std::pair<int, T> getVert(size_t index);
-
-            // create matrix from two vectors?
 
             // add vertex, 
             GraphMatrix& addVertex(T data, std::vector<int> edges);
             // add edge
             GraphMatrix& addEdge(size_t index, size_t edge, int weight = 1);
+            GraphMatrix& addSymEdge(size_t index, size_t edge, int weight = 1);
+
+            std::vector<int> dijkstras(size_t from, size_t to);
 
             //print overloads, I dont remember how to do this in cpps for templates...
             friend std::ostream& operator<<(std::ostream& os, const GraphMatrix<T>& graph) 
@@ -69,7 +71,7 @@ namespace DominicsSelfImplement
                     }
                     os << std::endl;
                 }
-        
+                //taken out for feeding to python for pretty visual..
                 //os << "Vertices:" << std::endl;
                 //for (size_t k = 0; k < graph._vertices.size(); ++k) 
                 //{
